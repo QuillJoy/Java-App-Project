@@ -23,6 +23,13 @@ public class App {
             usrInput = scanner.nextInt();
         }
         System.out.println("Program closing...");
-
     }
+
+
+    public static void addWorkout(){
+        workout w1 = new workout();
+        w1.setName(name);
+    }
+
+
 }
