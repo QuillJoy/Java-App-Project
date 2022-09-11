@@ -45,13 +45,39 @@ public class App {
 
 
     public static void viewWorkout(){
+        System.out.println("-------------------------------");
         for(int i = 0; i < storage.length; i++){
             if(storage[i] == null){
-                System.out.println(i);
+                System.out.println(i+1);
             }
             else{
-                System.out.println(storage[i].getName());
+                System.out.println((i+1) + ". " + storage[i].getName());
             }
+        }
+        System.out.println("Type number of workout for further info, or enter 0 to go back to menu ");
+        System.out.print("Input: ");
+        int input = scanner.nextInt();
+        while(input != 0){
+            System.out.println(storage[input - 1].getName());
+            System.out.println(storage[input - 1].getDate());
+            System.out.println(storage[input - 1].getWeight());
+
+            scanner.nextLine();
+            System.out.print("Press enter to continue: ");
+            scanner.nextLine();
+            
+            System.out.println("-------------------------------");
+            for(int i = 0; i < storage.length; i++){
+                if(storage[i] == null){
+                    System.out.println(i+1);
+                }
+                else{
+                    System.out.println((i+1) + ". " + storage[i].getName());
+                }
+            }
+            System.out.println("Type number of workout for further info, or enter 0 to go back to menu ");
+            System.out.print("Input: ");
+            input = scanner.nextInt();
         }
     }
 }
