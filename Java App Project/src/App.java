@@ -16,6 +16,7 @@ public class App {
                 case 2:
                     break;
                 case 3: 
+                    viewWorkout();
                     break;
                 case 4:
                     return;
@@ -38,6 +39,13 @@ public class App {
             }
         }
         return;
+    }
+
+    public static void viewWorkout(){
+        for(int i = 0; i < 4; i++){
+
+        }
+        System.out.println(storage[0].getName());
     }
 
 
