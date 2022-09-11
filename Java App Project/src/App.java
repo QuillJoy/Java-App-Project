@@ -27,14 +27,14 @@ public class App {
 
 
     public static void addWorkout(){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < storage.length; i++){
             if(storage[i] == null){
                 storage[i] = new workout();
                 System.out.println("What is the name");
                 scanner.nextLine(); //token ate
                 String name = scanner.nextLine();
-                storage[0].setName(name);
-                System.out.println("The workout name is " + storage[0].getName());
+                storage[i].setName(name);
+                System.out.println("The workout name is " + storage[i].getName());
                 return;
             }
         }
@@ -42,10 +42,15 @@ public class App {
     }
 
     public static void viewWorkout(){
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < storage.length; i++){
+            if(storage[i] == null){
+                System.out.println(i);
+            }
+            else{
+                System.out.println(storage[i].getName());
+            }
 
         }
-        System.out.println(storage[0].getName());
     }
 
 
