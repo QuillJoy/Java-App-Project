@@ -8,6 +8,7 @@ public class App {
 
         while (usrInput != 4){
             System.out.println("Menu: \n 1. Add new workout \n 2. Add progress \n 3. View workouts \n 4. Close");
+            System.out.print("Input: ");
             usrInput = scanner.nextInt();
             switch(usrInput){
                 case 1:
@@ -30,7 +31,8 @@ public class App {
         for(int i = 0; i < storage.length; i++){
             if(storage[i] == null){
                 storage[i] = new workout();
-                System.out.println("What is the name");
+                System.out.println("Enter new workout name");
+                System.out.print("Input: ");
                 scanner.nextLine(); //token ate
                 String name = scanner.nextLine();
                 storage[i].setName(name);
@@ -41,6 +43,7 @@ public class App {
         return;
     }
 
+
     public static void viewWorkout(){
         for(int i = 0; i < storage.length; i++){
             if(storage[i] == null){
@@ -49,10 +52,6 @@ public class App {
             else{
                 System.out.println(storage[i].getName());
             }
-
         }
     }
-
-
-
 }
