@@ -58,9 +58,7 @@ public class App {
         System.out.print("Input: ");
         int input = scanner.nextInt();
         while(input != 0){
-            System.out.println(storage[input - 1].getName());
-            System.out.println(storage[input - 1].getDate());
-            System.out.println(storage[input - 1].getWeight());
+
 
             scanner.nextLine();
             System.out.print("Press enter to continue: ");
