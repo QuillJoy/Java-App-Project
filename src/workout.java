@@ -1,6 +1,7 @@
+import java.util.*;
 public class workout {
     String name;
-
+    HashMap<String, Integer> progress = new HashMap<String, Integer>();
 
 
     workout(){
@@ -16,7 +17,13 @@ public class workout {
         this.name = name;
     }
 
+    public void setProgress (String string, Integer integer){
+        progress.put(string,integer);
+    }
 
+    public HashMap<String,Integer> getProgress(){
+        return progress;
+    }
     
     
 }
