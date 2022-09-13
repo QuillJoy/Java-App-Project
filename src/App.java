@@ -28,18 +28,39 @@ public class App {
 
 
     public static void addWorkout(){
-        for(int i = 0; i < storage.length; i++){
-            if(storage[i] == null){
-                storage[i] = new workout();
-                System.out.println("Enter new workout name");
-                System.out.print("Input: ");
-                scanner.nextLine(); //token ate
-                String name = scanner.nextLine();
-                storage[i].setName(name);
-                System.out.println("The workout name is " + storage[i].getName());
-                return;
+        String input = "zlx";
+
+        System.out.println("Enter name of workout, or enter 0 to return to menu.");
+        System.out.print("Input: ");
+        input = scanner.nextLine(); //token ate
+        input = scanner.nextLine();
+        while(input != "0"){
+            for(int i = 0; i < storage.length; i++){
+                if(storage[i] == null){
+                    storage[i] = new workout();
+                    storage[i].setName(input);
+                    System.out.println("The workout name is " + storage[i].getName());
+                    System.out.println("Press enter to continue: ");
+                    scanner.nextLine();
+                    return;
+                }
             }
+            System.out.println("Enter name of workout, or enter 0 to return to menu.");
+            input = scanner.nextLine();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
         return;
     }
 
