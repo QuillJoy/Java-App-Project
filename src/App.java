@@ -15,6 +15,7 @@ public class App {
                     addWorkout();
                     break;
                 case 2:
+                    addProgress();
                     break;
                 case 3: 
                     viewWorkout();
@@ -48,20 +49,45 @@ public class App {
             System.out.println("Enter name of workout, or enter 0 to return to menu.");
             input = scanner.nextLine();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
         return;
+    }
+
+    public static void addProgress(){
+        System.out.println("-------------------------------");
+        for(int i = 0; i < storage.length; i++){
+            if(storage[i] == null){
+                System.out.println(i+1);
+            }
+            else{
+                System.out.println((i+1) + ". " + storage[i].getName());
+            }
+        }
+        System.out.println("Select workout to add progress to, or enter 0 to cancel. ");
+        System.out.print("Input: ");
+        int input = scanner.nextInt();
+        if(input == 0){
+            return;
+        }
+        input -= 1;
+        System.out.println("Enter date.");
+        System.out.print("Input: ");
+        scanner.nextLine(); 
+        String date = scanner.nextLine();
+        System.out.println("Enter weight.");
+        System.out.print("Input: ");
+        Integer weight = scanner.nextInt();
+        System.out.println("You entered: " + date + " and " + weight);
+        scanner.nextLine();
+        scanner.nextLine();
+        System.out.println("Enter 1 to confirm, or 0 to cancel");
+        System.out.print("Input: ");
+        int input2 = scanner.nextInt();
+        if(input2 == 0){
+            return;
+        }
+        (storage[input]).setProgress(date, weight);
+        System.out.println(storage[input].progress);
+
     }
 
 

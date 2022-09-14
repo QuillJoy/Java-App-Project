@@ -1,7 +1,7 @@
 import java.util.*;
 public class workout {
     String name;
-    HashMap<String, Integer> progress = new HashMap<String, Integer>();
+    LinkedHashMap<String, Integer> progress = new LinkedHashMap<String, Integer>();
 
 
     workout(){
