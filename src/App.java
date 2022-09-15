@@ -35,7 +35,7 @@ public class App {
         System.out.print("Input: ");
         input = scanner.nextLine(); //token ate
         input = scanner.nextLine();
-        while(input != "0"){
+        while(!input.equals("0")){
             for(int i = 0; i < storage.length; i++){
                 if(storage[i] == null){
                     storage[i] = new workout();
