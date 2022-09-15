@@ -104,25 +104,12 @@ public class App {
         System.out.println("Type number of workout for further info, or enter 0 to go back to menu ");
         System.out.print("Input: ");
         int input = scanner.nextInt();
-        while(input != 0){
-
-
-            scanner.nextLine();
-            System.out.print("Press enter to continue: ");
-            scanner.nextLine();
-            
-            System.out.println("-------------------------------");
-            for(int i = 0; i < storage.length; i++){
-                if(storage[i] == null){
-                    System.out.println(i+1);
-                }
-                else{
-                    System.out.println((i+1) + ". " + storage[i].getName());
-                }
-            }
-            System.out.println("Type number of workout for further info, or enter 0 to go back to menu ");
-            System.out.print("Input: ");
-            input = scanner.nextInt();
+        if(input == 0){
+            return;
         }
+        System.out.println(storage[input-1].getName() + storage[input-1].getProgress());
+        System.out.print("Enter to continue: ");
+        scanner.nextLine();
+        scanner.nextLine();
     }
 }
