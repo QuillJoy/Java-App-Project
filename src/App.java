@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.*;
 import java.util.*;
 
 public class App {
@@ -106,6 +109,13 @@ public class App {
         int input = scanner.nextInt();
         if(input == 0){
             return;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
+
+        for (String key : storage[input-1].getProgress().keySet()){
+            String test = key;
+            LocalDate date = LocalDate.parse(test, formatter);
+            System.out.println(date);
         }
         System.out.println(storage[input-1].getName() + storage[input-1].getProgress());
         System.out.print("Enter to continue: ");
