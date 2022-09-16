@@ -6,7 +6,7 @@ public class workout {
 
 
     workout(){
-        name = this.name;
+ 
 
     }
 
