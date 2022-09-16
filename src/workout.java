@@ -1,7 +1,8 @@
 import java.util.*;
+import java.time.*;
 public class workout {
     String name;
-    LinkedHashMap<String, Integer> progress = new LinkedHashMap<String, Integer>();
+    TreeMap<LocalDate, Integer> progress = new TreeMap<LocalDate, Integer>();
 
 
     workout(){
@@ -17,11 +18,11 @@ public class workout {
         this.name = name;
     }
 
-    public void setProgress (String string, Integer integer){
-        progress.put(string,integer);
+    public void setProgress (LocalDate date, Integer integer){
+        progress.put(date,integer);
     }
 
-    public HashMap<String,Integer> getProgress(){
+    public TreeMap<LocalDate,Integer> getProgress(){
         return progress;
     }
     

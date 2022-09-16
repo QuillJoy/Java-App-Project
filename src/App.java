@@ -1,3 +1,4 @@
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.*;
@@ -76,10 +77,30 @@ public class App {
         System.out.print("Input: ");
         scanner.nextLine(); 
         String date = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        LocalDate dt1 = LocalDate.parse(date, formatter); // string to localdate 
+
+
+        // Switch to TreeMap because automatically implements comparable for date
+        // so now have to convert String to Date
+        // Get usr input as string for date, initialize date1 so that it can 
+        // get out of the try block
+        // the purpose of the try block is to get pass the parse exception error
+        // as well as the conversion.
+        //Date displays time, dont want that so manipulate string
+        /* 
+        try{
+            date1 = new SimpleDateFormat("MM/dd/yyyy").parse(date);
+        } catch (java.text.ParseException e){
+            e.printStackTrace();
+        }
+        */
+
+
         System.out.println("Enter weight.");
         System.out.print("Input: ");
         Integer weight = scanner.nextInt();
-        System.out.println("You entered: " + date + " and " + weight);
+        System.out.println("You entered: " + dt1 + " and " + weight);
         scanner.nextLine();
         scanner.nextLine();
         System.out.println("Enter 1 to confirm, or 0 to cancel");
@@ -88,7 +109,7 @@ public class App {
         if(input2 == 0){
             return;
         }
-        (storage[input]).setProgress(date, weight);
+        (storage[input]).setProgress(dt1, weight);
         System.out.println(storage[input].progress);
 
     }
@@ -110,12 +131,11 @@ public class App {
         if(input == 0){
             return;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
 
-        for (String key : storage[input-1].getProgress().keySet()){
-            String test = key;
-            LocalDate date = LocalDate.parse(test, formatter);
-            System.out.println(date);
+        for (LocalDate key : storage[input-1].getProgress().keySet()){
+            String formattedDate = key.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+            System.out.println(formattedDate);
+
         }
         System.out.println(storage[input-1].getName() + storage[input-1].getProgress());
         System.out.print("Enter to continue: ");
