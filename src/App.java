@@ -9,12 +9,12 @@ public class App {
         int usrInput = 9999;
 
         while (usrInput != 4){
-            System.out.println("Menu: \n 1. Add new workout \n 2. Add progress \n 3. View workouts \n 4. Close");
+            System.out.println("Menu: \n 1. Add/Delete workout \n 2. Add progress \n 3. View workouts \n 4. Close");
             System.out.print("Input: ");
             usrInput = scanner.nextInt();
             switch(usrInput){
                 case 1:
-                    addWorkout();
+                    addDeleteWorkout();
                     break;
                 case 2:
                     addProgress();
@@ -30,28 +30,62 @@ public class App {
     }
 
 
-    public static void addWorkout(){
-        String input = "zlx";
+    public static void addDeleteWorkout(){
+        int addDeleteChoice = 999;
 
-        System.out.println("Enter name of workout, or enter 0 to return to menu.");
+        System.out.println("(1) Add or (2) Delete a workout?");
         System.out.print("Input: ");
-        input = scanner.nextLine(); //token ate
-        input = scanner.nextLine();
-        while(!input.equals("0")){
-            for(int i = 0; i < storage.length; i++){
-                if(storage[i] == null){
-                    storage[i] = new workout();
-                    storage[i].setName(input);
-                    System.out.println("The workout name is " + storage[i].getName());
-                    System.out.println("Press enter to continue: ");
-                    scanner.nextLine();
+        addDeleteChoice = scanner.nextInt();
+
+        switch(addDeleteChoice){
+            case 1: //Add
+                String inputAdd = "zlx";
+                System.out.println("Enter name of workout, or enter 0 to return to menu.");
+                System.out.print("Input: ");
+                inputAdd = scanner.nextLine(); //token ate
+                inputAdd = scanner.nextLine();
+                while(!inputAdd.equals("0")){
+                    for(int i = 0; i < storage.length; i++){
+                        if(storage[i] == null){
+                            storage[i] = new workout();
+                            storage[i].setName(inputAdd);
+                            System.out.println("The workout name is " + storage[i].getName());
+                            System.out.println("Press enter to continue: ");
+                            scanner.nextLine();
+                            return;
+                        }
+                    }
+                    System.out.println("Enter name of workout, or enter 0 to return to menu.");
+                    inputAdd = scanner.nextLine();
+                }
+                break;
+            case 2: //Delete
+                System.out.println("-------------------------------");
+                for(int i = 0; i < storage.length; i++){
+                    if(storage[i] == null){
+                        System.out.println(i+1);
+                    }
+                    else{
+                        System.out.println((i+1) + ". " + storage[i].getName());
+                    }
+                }
+                System.out.println("Enter number of workout you want to delete.");
+                System.out.print("Input: ");
+                int input = scanner.nextInt();
+                if (input == 0){
+                    break;
+                }
+                input -= 1;
+                if(storage[input] == null){
+                    System.out.println("Oops! This spots already empty.");
                     return;
                 }
-            }
-            System.out.println("Enter name of workout, or enter 0 to return to menu.");
-            input = scanner.nextLine();
+                else{
+                    System.out.println("Deleting " + storage[input].getName());
+                    storage[input] = null;
+                }
+                break;       
         }
-        return;
     }
 
     public static void addProgress(){
