@@ -25,6 +25,10 @@ public class workout {
     public TreeMap<LocalDate,Integer> getProgress(){
         return progress;
     }
+
+    public Integer getProgressValuefromKey(LocalDate key){
+        return progress.get(key);
+    }
     
     
 }
