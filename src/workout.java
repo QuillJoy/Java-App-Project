@@ -29,6 +29,10 @@ public class workout {
     public Integer getProgressValuefromKey(LocalDate key){
         return progress.get(key);
     }
+
+    public void deleteProgress(LocalDate key){
+        progress.remove(key);
+    }
     
     
 }

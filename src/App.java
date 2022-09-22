@@ -9,7 +9,7 @@ public class App {
         int usrInput = 9999;
 
         while (usrInput != 4){
-            System.out.println("Menu: \n 1. Add/Delete workout \n 2. Add progress \n 3. View workouts \n 4. Close");
+            System.out.println("Menu: \n 1. Add/Delete workout \n 2. Add/Delete progress \n 3. View workouts \n 4. Close");
             System.out.print("Input: ");
             usrInput = scanner.nextInt();
             switch(usrInput){
@@ -17,7 +17,7 @@ public class App {
                     addDeleteWorkout();
                     break;
                 case 2:
-                    addProgress();
+                    addDeleteProgress();
                     break;
                 case 3: 
                     viewWorkout();
@@ -88,44 +88,93 @@ public class App {
         }
     }
 
-    public static void addProgress(){
-        System.out.println("-------------------------------");
-        for(int i = 0; i < storage.length; i++){
-            if(storage[i] == null){
-                System.out.println(i+1);
-            }
-            else{
-                System.out.println((i+1) + ". " + storage[i].getName());
-            }
-        }
-        System.out.println("Select workout to add progress to, or enter 0 to cancel. ");
-        System.out.print("Input: ");
-        int input = scanner.nextInt();
-        if(input == 0){
-            return;
-        }
-        input -= 1;
-        System.out.println("Enter date.");
-        System.out.print("Input: ");
-        scanner.nextLine(); 
-        String date = scanner.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-        LocalDate dt1 = LocalDate.parse(date, formatter); // string to localdate 
+    public static void addDeleteProgress(){
+        int addDeleteChoice = 999;
 
-        System.out.println("Enter weight.");
+        System.out.println("(1) Add or (2) Delete a workout?");
         System.out.print("Input: ");
-        Integer weight = scanner.nextInt();
-        System.out.println("You entered: " + dt1 + " and " + weight);
-        scanner.nextLine();
-        scanner.nextLine();
-        System.out.println("Enter 1 to confirm, or 0 to cancel");
-        System.out.print("Input: ");
-        int input2 = scanner.nextInt();
-        if(input2 == 0){
-            return;
+        addDeleteChoice = scanner.nextInt();
+        switch(addDeleteChoice){
+            case 1:
+                System.out.println("-------------------------------");
+                for(int i = 0; i < storage.length; i++){
+                    if(storage[i] == null){
+                        System.out.println(i+1);
+                    }
+                    else{
+                        System.out.println((i+1) + ". " + storage[i].getName());
+                    }
+                }
+                System.out.println("Select workout to add progress to, or enter 0 to cancel. ");
+                System.out.print("Input: ");
+                int input = scanner.nextInt();
+                if(input == 0){
+                    return;
+                }
+                input -= 1;
+                System.out.println("Enter date.");
+                System.out.print("Input: ");
+                scanner.nextLine(); 
+                String date = scanner.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+                LocalDate dt1 = LocalDate.parse(date, formatter); // string to localdate 
+    
+                System.out.println("Enter weight.");
+                System.out.print("Input: ");
+                Integer weight = scanner.nextInt();
+                System.out.println("You entered: " + dt1 + " and " + weight);
+                scanner.nextLine();
+                scanner.nextLine();
+                System.out.println("Enter 1 to confirm, or 0 to cancel");
+                System.out.print("Input: ");
+                int input2 = scanner.nextInt();
+                if(input2 == 0){
+                    return;
+                }
+                (storage[input]).setProgress(dt1, weight);
+                System.out.println(storage[input].progress);
+                break;
+            case 2:
+                System.out.println("-------------------------------");
+                for(int i = 0; i < storage.length; i++){
+                    if(storage[i] == null){
+                        System.out.println(i+1);
+                    }
+                    else{
+                        System.out.println((i+1) + ". " + storage[i].getName());
+                    }
+                }
+                System.out.println("Select workout to delete progress, or enter 0 to cancel. ");
+                System.out.print("Input: ");
+                int inputDel = scanner.nextInt();
+                if(inputDel == 0){
+                    return;
+                }
+                inputDel -= 1;
+                for (LocalDate key : storage[inputDel].getProgress().keySet()){
+                    String formattedDate = key.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                    Integer weight2 = storage[inputDel].getProgressValuefromKey(key);
+                    System.out.println(formattedDate + "          " + weight2 + "lbs");
+                }
+                System.out.println("Enter date of entry you want to delete.");
+                System.out.print("Input: ");
+                scanner.nextLine(); 
+                String date2 = scanner.nextLine();
+                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+                LocalDate dt2 = LocalDate.parse(date2, formatter2); // string to localdate 
+                System.out.println("Confirm deletion of " + date2 + " " + storage[inputDel].getProgressValuefromKey(dt2));
+                System.out.println("Enter 1 to confirm, or 0 to cancel");
+                System.out.print("Input: ");
+                int input3 = scanner.nextInt();
+                if(input3 == 0){
+                    return;
+                }
+                storage[inputDel].deleteProgress(dt2);
+                System.out.println("Entry deleted");
+
+                break;
         }
-        (storage[input]).setProgress(dt1, weight);
-        System.out.println(storage[input].progress);
+        
 
     }
 
