@@ -60,22 +60,12 @@ public class App {
                 }
                 break;
             case 2: //Delete
-                System.out.println("-------------------------------");
-                for(int i = 0; i < storage.length; i++){
-                    if(storage[i] == null){
-                        System.out.println(i+1);
-                    }
-                    else{
-                        System.out.println((i+1) + ". " + storage[i].getName());
-                    }
-                }
+                displayWorkout();
                 System.out.println("Enter number of workout you want to delete.");
-                System.out.print("Input: ");
-                int input = scanner.nextInt();
-                if (input == 0){
-                    break;
+                int input = getInput();
+                if(input == 0){
+                    return;
                 }
-                input -= 1;
                 if(storage[input] == null){
                     System.out.println("Oops! This spots already empty.");
                     return;
@@ -91,27 +81,17 @@ public class App {
     public static void addDeleteProgress(){
         int addDeleteChoice = 999;
 
-        System.out.println("(1) Add or (2) Delete a workout?");
+        System.out.println("(1) Add or (2) Delete progress?");
         System.out.print("Input: ");
         addDeleteChoice = scanner.nextInt();
         switch(addDeleteChoice){
             case 1:
-                System.out.println("-------------------------------");
-                for(int i = 0; i < storage.length; i++){
-                    if(storage[i] == null){
-                        System.out.println(i+1);
-                    }
-                    else{
-                        System.out.println((i+1) + ". " + storage[i].getName());
-                    }
-                }
-                System.out.println("Select workout to add progress to, or enter 0 to cancel. ");
-                System.out.print("Input: ");
-                int input = scanner.nextInt();
-                if(input == 0){
+                displayWorkout();
+                System.out.println("Select workout to add progress to, or enter 111 to cancel. ");
+                int input = getInput();
+                if(input == 111){
                     return;
                 }
-                input -= 1;
                 System.out.println("Enter date.");
                 System.out.print("Input: ");
                 scanner.nextLine(); 
@@ -135,22 +115,12 @@ public class App {
                 System.out.println(storage[input].progress);
                 break;
             case 2:
-                System.out.println("-------------------------------");
-                for(int i = 0; i < storage.length; i++){
-                    if(storage[i] == null){
-                        System.out.println(i+1);
-                    }
-                    else{
-                        System.out.println((i+1) + ". " + storage[i].getName());
-                    }
-                }
-                System.out.println("Select workout to delete progress, or enter 0 to cancel. ");
-                System.out.print("Input: ");
-                int inputDel = scanner.nextInt();
-                if(inputDel == 0){
+                displayWorkout();
+                System.out.println("Select workout to delete progress, or enter 111 to cancel. ");
+                int inputDel = getInput();
+                if(inputDel == 111){
                     return;
                 }
-                inputDel -= 1;
                 for (LocalDate key : storage[inputDel].getProgress().keySet()){
                     String formattedDate = key.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
                     Integer weight2 = storage[inputDel].getProgressValuefromKey(key);
@@ -180,15 +150,7 @@ public class App {
 
 
     public static void viewWorkout(){
-        System.out.println("-------------------------------");
-        for(int i = 0; i < storage.length; i++){
-            if(storage[i] == null){
-                System.out.println(i+1);
-            }
-            else{
-                System.out.println((i+1) + ". " + storage[i].getName());
-            }
-        }
+        displayWorkout();
         System.out.println("Type number of workout for further info, or enter 0 to go back to menu ");
         System.out.print("Input: ");
         int input = scanner.nextInt();
@@ -206,4 +168,27 @@ public class App {
         scanner.nextLine();
         scanner.nextLine();
     }
+
+    public static void displayWorkout(){
+        System.out.println("-------------------------------");
+        for(int i = 0; i < storage.length; i++){
+            if(storage[i] == null){
+                System.out.println(i+1);
+            }
+            else{
+                System.out.println((i+1) + ". " + storage[i].getName());
+            }
+        }
+    }
+
+    public static int getInput(){
+        System.out.print("Input: ");
+        int input = scanner.nextInt();
+        if(input == 111){
+            return 111;
+        }
+        input -= 1;
+        return input;
+    }
+
 }
